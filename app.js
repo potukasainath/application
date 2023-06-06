@@ -52,6 +52,9 @@ function authenticateToken(request, response, next) {
   let jwtToken;
   const authHeader = request.headers["authorization"];
   if (authHeader !== undefined) {
+    jwtToken = authHeader.split(" ")[1];
+  }
+  if (authHeader === undefined) {
     response.status(401);
     response.send("Invalid jwt Token");
   } else {
